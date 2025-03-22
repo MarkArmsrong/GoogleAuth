@@ -12,3 +12,6 @@ documentation/
 # Ignore TypeScript build artifacts
 *.tsbuildinfo
 
+.gitInstructions.md
+
+.env
