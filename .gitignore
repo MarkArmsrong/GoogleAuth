@@ -1,0 +1,14 @@
+# Ignore the dist folder (compiled output)
+dist/
+
+# Ignore VS Code settings and workspace files
+.vscode/
+
+# Ignore node modules (if not already included)
+node_modules/
+
+documentation/
+
+# Ignore TypeScript build artifacts
+*.tsbuildinfo
+

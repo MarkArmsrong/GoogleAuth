@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "ES6",                       // Compiling to ES6
+    "module": "commonjs",                  // Module system to use
+    "outDir": "./dist",                    // Output directory for compiled JS
+    "rootDir": "./src",                    // Source directory for TS files
+    "esModuleInterop": true,               // For compatibility with commonjs modules
+    "strict": true,                        // Enable all strict type-checking options
+    "skipLibCheck": true,                  // Skip checking .d.ts files for errors
+    "forceConsistentCasingInFileNames": true, // Ensure file names are case-consistent
+    "sourceMap": true
+  }
+}

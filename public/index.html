@@ -1,0 +1,52 @@
+<button id="googleAuthButton">Login with Google</button>
+<button id="logoutButton" style="display: none;">Logout</button>
+
+<div id="statusMessage"></div>
+<div id="message"></div>
+
+<script>
+    async function checkAuthStatus() {
+
+        const response = await fetch('/auth/status', {
+            method: 'GET',
+        })
+
+        const data = await response.json();
+
+        //alert(data.authenticated);
+
+        if (data.authenticated) {
+            document.getElementById('googleAuthButton').style.display = 'none';
+            document.getElementById('logoutButton').style.display = 'block';
+            document.getElementById('statusMessage').innerHTML = `Welcome, ${data.user.displayName}` + ' -- You ARE logged in.';
+        } 
+        else {                
+            document.getElementById('statusMessage').innerHTML = 'You ARE NOT logged in.';
+        }
+    }
+
+    document.getElementById('googleAuthButton').addEventListener('click', () => {
+        window.location.href = '/auth/google';
+    });
+
+    document.getElementById('logoutButton').addEventListener('click', async () => {
+        const userConfirmed = confirm([
+            'Warning, this will destroy the session as well as the response cookie.',
+            'The server will stop functioning.',
+            'This will ensure that the current session is destroyed for subsequent testing'
+            ].join(' '));
+
+            if (userConfirmed) {
+                document.getElementById('statusMessage').innerHTML = 'Logged Out -- Session Ended';
+                document.getElementById('logoutButton').style.display = 'none';
+                await fetch('/auth/logout', { method: 'POST', credentials: 'same-origin'  });
+            } else {
+                alert('Session will be preserved');
+            }
+
+    });
+
+    // Call checkAuthStatus when the page loads
+    checkAuthStatus();
+
+</script>
